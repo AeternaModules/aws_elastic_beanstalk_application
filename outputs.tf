@@ -4,7 +4,7 @@ output "elastic_beanstalk_applications_id" {
 }
 output "elastic_beanstalk_applications_appversion_lifecycle" {
   description = "Map of appversion_lifecycle values across all elastic_beanstalk_applications, keyed the same as var.elastic_beanstalk_applications"
-  value       = { for k, v in aws_elastic_beanstalk_application.elastic_beanstalk_applications : k => v.appversion_lifecycle if v.appversion_lifecycle != null && length(v.appversion_lifecycle) > 0 }
+  value       = { for k, v in aws_elastic_beanstalk_application.elastic_beanstalk_applications : k => one(v.appversion_lifecycle) if v.appversion_lifecycle != null && length(v.appversion_lifecycle) > 0 }
 }
 output "elastic_beanstalk_applications_arn" {
   description = "Map of arn values across all elastic_beanstalk_applications, keyed the same as var.elastic_beanstalk_applications"
